@@ -1,0 +1,47 @@
+
+
+.heart{
+    position: relative;
+}
+.heart svg{
+    width: 30px;
+    height: 30px;
+}
+.heart span{
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    background-color: rgba(0, 100, 210, 1);
+    color: white;
+    font-size: 11px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
+.shop{
+    position: relative;
+    margin-right: 8px;
+}
+.shop svg{
+    width: 30px;
+    height: 30px;
+}
+.shop span{
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 100, 210, 1);
+    color: white;
+    font-size: 11px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
