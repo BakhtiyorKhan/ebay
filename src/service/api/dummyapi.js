@@ -23,6 +23,22 @@ class apiService{
         })
         return res
     }
+
+    async getAllProducts(count){
+        let res = await client({
+            method: 'GET',
+            url: `/products?limit=${count}`
+        })
+        return res
+    }
+
+    async getSingleProduct(id){
+        let res = await client({
+            method: 'GET',
+            url: `/products/${id}`
+        })
+        return res
+    }
 }
 
 export default new apiService

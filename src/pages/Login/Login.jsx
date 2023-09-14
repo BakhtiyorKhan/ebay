@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import { Input,Tooltip } from 'antd';
+import { Input } from 'antd';
 import {useNavigate} from 'react-router-dom'
 import '../Login/login.css'
 import apiService from '../../service/api/dummyapi.js'
