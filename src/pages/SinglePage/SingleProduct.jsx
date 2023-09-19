@@ -9,15 +9,24 @@ const SingleProduct = () => {
 
     const params = useParams()
     const [product,setProduct] = useState([])
+    const [cotegory,setCotegory] = useState([])
+    
+    
     let id = params.id
     useEffect(() => {
        getSingleProduct()
+       getCategory()
     }, [id]);
 
     async function getSingleProduct(){
         let res = await apiService.getSingleProduct(id)
-        console.log(res?.data);
         setProduct(res?.data)
+    }
+
+    async function getCategory(){
+        let res = await apiService.getCategory()
+        console.log(res?.data?.products);
+        setCotegory(res?.data?.products)
     }
     return (
         <div>
@@ -39,6 +48,7 @@ const SingleProduct = () => {
                          me-[50px] rounded-2xl'>
                         <img className='w-[350px] h-[250px] hover:scale-125 rounded-2xl' src={product.thumbnail} alt={product.title} />
                     </div>
+    
                 </div>
                 <div>
                     <div className='flex justify-around items-center'>
@@ -99,13 +109,9 @@ const SingleProduct = () => {
 
             <div className='w-[90%] mx-auto flex py-[80px]'>
                 <div className='w-[380px] h-[300px] rounded-3xl bg-bginput_color me-[90px] flex justify-center items-center'>
-                    <>
-                         ? 
-                        <img className='w-[380px] h-[300px] rounded-3xl' src={product.images[0]} alt="smartphone" />
+                
+                    <img className='w-[380px] h-[300px] rounded-3xl' src='{product.images[0]}' alt="smartphone" />
                         
-                    </>
-                    :
-                    <>Loading...</>
                 </div>
                 <div>
                     <ul className='list-disc text-[14px] font-medium leading-[21px]'>
@@ -123,6 +129,8 @@ const SingleProduct = () => {
                     </ul>
                 </div>
             </div>
+
+            <div className='w-[90%] mx-auto'></div>
         </div>
     );
 }

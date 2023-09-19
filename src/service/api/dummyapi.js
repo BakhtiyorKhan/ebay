@@ -39,6 +39,14 @@ class apiService{
         })
         return res
     }
+
+    async getCategory(category){
+        let res = await client({
+            method: 'GET',
+            url: `/products?limit=15`
+         })
+    return res
+    }
 }
 
 export default new apiService
