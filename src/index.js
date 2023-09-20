@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import RootPage from './pages/Rootpage/RootPage';
 import AllProducts from './pages/AllProducts/AllProducts';
 import SingleProduct from './pages/SinglePage/SingleProduct';
+import SwiperPage from './pages/Spiwer/SwiperPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,6 +20,7 @@ root.render(
             <Route path='root' element={<RootPage/>} />
             <Route path='/allproducts' element={<AllProducts/>}/>
             <Route path='/product/:id' element={<SingleProduct/>}/>
+            <Route path='/spiwer' element={<SwiperPage/>}/>
           </Route>
       </Routes>
     </BrowserRouter>

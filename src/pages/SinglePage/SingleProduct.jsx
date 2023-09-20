@@ -1,30 +1,42 @@
-import React,{useState,useEffect} from 'react';
-import { useParams,Link } from 'react-router-dom';
-import {ArrowLeftOutlined } from '@ant-design/icons'
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import apiService from '../../service/api/dummyapi.js'
 import { Rate } from 'antd';
 import ImgCheck from '../../assets/images/checkmark.svg'
 
+
+
 const SingleProduct = () => {
 
     const params = useParams()
-    const [product,setProduct] = useState([])
+    const [product, setProduct] = useState([])
+    const [products, setProducts] = useState([])
+    const [image, setImage] = useState()
     let id = params.id
+
     useEffect(() => {
-       getSingleProduct()
+        getSingleProduct()
+        getProducts()
     }, [id]);
 
-    async function getSingleProduct(){
+    async function getSingleProduct() {
         let res = await apiService.getSingleProduct(id)
-        console.log(res?.data);
         setProduct(res?.data)
+        setImage(res?.data?.images[0])
+    }
+
+    async function getProducts() {
+        let res = await apiService.getAllProducts(15)
+        setProducts(res?.data?.products)
+        console.log(res?.data?.products);
     }
     return (
         <div>
             <div className='w-[90%] mx-auto flex items-center mb-[20px]'>
                 <ArrowLeftOutlined className='w-[40px] h-[40px] bg-bginput_color text-btn_bg
                 font-medium text-[20px] flex justify-center items-center rounded-[50px] me-4'/>
-                <p className='text-base font-medium leading-[20px]'>Back to previous page | Listed in category: 
+                <p className='text-base font-medium leading-[20px]'>Back to previous page | Listed in category:
                     <span className='ms-1 text-btn_bg border-b-2 border-bginput_color'>Cell Phones & Accessories</span>
                     <span className='ms-4 text-btn_bg border-b-2 border-bginput_color'>Cell Phones & Smartphones</span>
                 </p>
@@ -36,9 +48,10 @@ const SingleProduct = () => {
             <div className='w-[90%] mx-auto flex mb-[60px]'>
                 <div >
                     <div className='w-[500px] h-[400px] bg-bginput_color flex justify-center items-center
-                         me-[50px] rounded-2xl'>
+                         me-[50px] rounded-2xl mb-[40px]'>
                         <img className='w-[350px] h-[250px] hover:scale-125 rounded-2xl' src={product.thumbnail} alt={product.title} />
                     </div>
+
                 </div>
                 <div>
                     <div className='flex justify-around items-center'>
@@ -48,7 +61,7 @@ const SingleProduct = () => {
                     <p className='text-base font-normal leading-[24px] text-text_gray mb-3'>Free 2 Days Shipping | 1 Year Warranty</p>
                     <Rate className='mb-4' allowHalf defaultValue={product.rating} />
                     <p className='text-[44px] font-medium leading-[66px]'><sup className='text-text_gray text-[24px] font-medium leading-[36px] me-1'>$</sup>{product.price}</p>
-                    
+
                     <ul className='mb-6'>
                         <li className='flex  mb-4 items-center'>
                             <img src={ImgCheck} alt="checkmark" />
@@ -99,20 +112,14 @@ const SingleProduct = () => {
 
             <div className='w-[90%] mx-auto flex py-[80px]'>
                 <div className='w-[380px] h-[300px] rounded-3xl bg-bginput_color me-[90px] flex justify-center items-center'>
-                    <>
-                         ? 
-                        <img className='w-[380px] h-[300px] rounded-3xl' src={product.images[0]} alt="smartphone" />
-                        
-                    </>
-                    :
-                    <>Loading...</>
+                    <img className='w-[380px] h-[300px] rounded-3xl' src={image} alt="smartphone" />
                 </div>
                 <div>
                     <ul className='list-disc text-[14px] font-medium leading-[21px]'>
                         <li className='mb-2'>15 cm (6.1-inch) Super Retina XDR display</li>
                         <li className='mb-2'>Cinematic mode adds shallow depth of field and shifts focus automatically in your videos</li>
                         <li className='mb-2'>Advanded dual-camera system with 12MP Wide and Ultra Wide cameras; Photographic Styles, Smart HDR 4, <br />
-                        Night mode, 4K Dalby Vision HDR recording</li>
+                            Night mode, 4K Dalby Vision HDR recording</li>
                         <li className='mb-2'>12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording</li>
                         <li className='mb-2'>A15 Bionic chip for lightning-fast performance</li>
                         <li className='mb-2'>Up to 19 hours of video playback</li>
@@ -123,6 +130,8 @@ const SingleProduct = () => {
                     </ul>
                 </div>
             </div>
+
+            
         </div>
     );
 }
