@@ -3,11 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import apiService from '../../service/api/dummyapi.js'
 import { Rate } from 'antd';
+import { useSelector, useDispatch } from 'react-redux'
 import ImgCheck from '../../assets/images/checkmark.svg'
 
 
 
 const SingleProduct = () => {
+
+    const selector = useSelector(state => state.CounterReduce)
+    const dispatch = useDispatch()
 
     const params = useParams()
     const [product, setProduct] = useState([])
@@ -29,7 +33,6 @@ const SingleProduct = () => {
     async function getProducts() {
         let res = await apiService.getAllProducts(15)
         setProducts(res?.data?.products)
-        console.log(res?.data?.products);
     }
     return (
         <div>
@@ -43,8 +46,8 @@ const SingleProduct = () => {
             </div>
 
             <div className='border-t-2 mb-[60px]'>
-
             </div>
+
             <div className='w-[90%] mx-auto flex mb-[60px]'>
                 <div >
                     <div className='w-[500px] h-[400px] bg-bginput_color flex justify-center items-center
@@ -86,7 +89,7 @@ const SingleProduct = () => {
                             <button className='px-10 text-base font-medium leading-[24px]
                             text-white rounded-lg py-1 bg-btn_bg me-3'>Buy it now</button>
                         </Link>
-                        <button className='px-10 py-1 bg-bginput_color rounded-lg first-letter:text-base 
+                        <button onClick={()=> {dispatch({type: 'increment'}) }} className='px-10 py-1 bg-bginput_color rounded-lg first-letter:text-base 
                         font-medium leading-[24px] text-btn_bg'>Add to Cart</button>
                     </div>
                 </div>
@@ -131,7 +134,7 @@ const SingleProduct = () => {
                 </div>
             </div>
 
-            
+
         </div>
     );
 }
