@@ -14,7 +14,6 @@ import imgRupay from '../../assets/images/rupay.svg'
 
 const SingleProduct = () => {
 
-    const selector = useSelector(state => state.CounterReduce)
     const dispatch = useDispatch()
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,13 +26,11 @@ const SingleProduct = () => {
 
     const params = useParams()
     const [product, setProduct] = useState([])
-    const [products, setProducts] = useState([])
     const [image, setImage] = useState()
     let id = params.id
 
     useEffect(() => {
         getSingleProduct()
-        getProducts()
     }, [id]);
 
     async function getSingleProduct() {
@@ -42,10 +39,7 @@ const SingleProduct = () => {
         setImage(res?.data?.images[0])
     }
 
-    async function getProducts() {
-        let res = await apiService.getAllProducts(15)
-        setProducts(res?.data?.products)
-    }
+    
     return (
         <div>
             <div className='w-[90%] mx-auto flex items-center mb-[20px]'>
