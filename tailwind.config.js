@@ -15,7 +15,8 @@ module.exports = {
         navbar_bg: 'rgba(0, 0, 0, 0.1)',
         search_bg: 'rgba(243, 243, 243, 1)',
         main_color: 'rgba(47, 41, 77, 1)',
-        text_gray: 'rgba(47, 41, 77, 0.4)'
+        text_gray: 'rgba(47, 41, 77, 0.4)',
+        bg_grey: 'rgba(217, 217, 217, 0.2)'
       }
     },
   },
