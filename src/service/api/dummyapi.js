@@ -39,6 +39,14 @@ class apiService{
         })
         return res
     }
+
+    async getAloneModel(query){
+        let res = await client({
+            method: 'GET',
+            url: `/products/search?q=${query}`
+        })
+        return res
+    }
 }
 
 export default new apiService

@@ -9,6 +9,7 @@ import SingleProduct from './pages/SinglePage/SingleProduct';
 import SwiperPage from './pages/Spiwer/SwiperPage';
 import { Provider } from 'react-redux'
 import store from './store/store';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,6 +25,7 @@ root.render(
             <Route path='/allproducts' element={<AllProducts />} />
             <Route path='/product/:id' element={<SingleProduct />} />
             <Route path='/spiwer' element={<SwiperPage />} />
+            <Route path='/search/:query' element={<SearchPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,32 +1,26 @@
 import React,{useEffect,useState} from 'react';
+import {useParams,Link} from 'react-router-dom'
 import { Rate } from 'antd';
-import {useNavigate,Link} from 'react-router-dom'
 import apiService from '../../service/api/dummyapi.js'
 import ImgLike from '../../assets/images/like.svg'
 import ImgSwap from '../../assets/images/swap-left-outlined.svg'
 
-const RootPage = () => {
+const SearchPage = () => {
 
-    const navigate = useNavigate()
-
+    const params = useParams()
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        getProducts()
-    }, []);
-
-    async function getProducts(){
-        let res = await apiService.getProducts()
-        setProducts(res?.data?.products)
+        aloneModel()
+    }, [params]);
+    
+    async function aloneModel(){
+        let res = await apiService.getAloneModel(params.query)
+        setProducts(res?.data?.products)        
     }
-
-    function HandleAll(){
-        navigate('/allproducts')
-    }
-
     return (
         <div>
-           <div className='w-[90%] mx-auto grid grid-cols-3  gap-3  mb-6'>
+            <div className='w-[90%] mx-auto grid grid-cols-3  gap-3  mb-6'>
                 {
                     products.map((item,index) => (
                         <div key={index} className='col-span-1 px-5 mb-6 shadow-2xl py-6 rounded-2xl'>
@@ -58,12 +52,8 @@ const RootPage = () => {
                     ))
                 }
            </div>
-
-           <div className='w-[150px] bg-btn_bg mx-auto rounded-3xl flex justify-center items-center py-3'>
-             <button onClick={HandleAll} className='text-white text-[18px] font-semibold leading-[24px]'>All products</button>
-           </div>
         </div>
     );
 }
 
-export default RootPage;
+export default SearchPage;

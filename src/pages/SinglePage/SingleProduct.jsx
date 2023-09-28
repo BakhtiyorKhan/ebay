@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import apiService from '../../service/api/dummyapi.js'
 import { Rate, Button, Modal } from 'antd';
-import { useSelector, useDispatch } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import ImgCheck from '../../assets/images/checkmark.svg'
 import imgPerson from '../../assets/images/person.svg'
 import imgMastercard from '../../assets/images/mastercard.svg'
